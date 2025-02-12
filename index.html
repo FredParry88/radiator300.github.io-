@@ -4,110 +4,286 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Апарат промивання пічки авто</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Подключаем Font Awesome для иконок -->
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
             color: rgb(213, 213, 213);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             text-align: center;
             background: linear-gradient(to right, #323232, #b35e1a);
+            overflow: hidden;
         }
 
         .container {
             width: 100%;
             max-width: 1100px;
-            padding: 15px;
-            margin: auto;
+            padding: 20px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            visibility: hidden;  /* Начально скрываем контейнер */
+            transform: translateY(50px);  /* Сдвигаем вниз */
+            animation: fadeInUp 1.5s forwards;
+        }
+
+        .left-content, .right-content {
+            flex: 1;
+            min-width: 300px;
+            padding: 15px;
+            transform: translateY(30px);
+            visibility: hidden;
+            animation: fadeInUp 1s forwards;
+            transition: visibility 1s ease, transform 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                visibility: hidden;
+                transform: translateY(30px);
+            }
+            100% {
+                visibility: visible;
+                transform: translateY(0);
+            }
         }
 
         h1 {
-            font-size: 32px;
+            font-size: 40px;
             font-weight: bold;
+            font-family: Fantasy; /* Добавлен шрифт Fantasy */
             text-transform: uppercase;
-            text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+            text-shadow: 15px 15px 15px rgba(0, 0, 0, 0.8);
+            margin-bottom: 2px;
+            visibility: hidden;
+            animation: fadeInUp 1.5s forwards;
         }
 
         .info {
-            font-size: 16px;
+            font-size: 18px;
             line-height: 1.5;
-            padding: 15px;
+            margin-bottom: 20px;
+            padding: 20px;
             border: 2px solid #302f2f;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.65);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.65);
             background-color: rgba(217, 63, 7, 0.1);
-            margin-bottom: 20px;
+            visibility: hidden;
+            animation: fadeInUp 2s forwards;
         }
 
-        .social-icons {
-            margin-top: 20px;
+       .media-block {
+            background: rgba(172, 50, 6, 0.1);
+            background-color: rgba(106, 35, 9, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.65);
+            margin: 20px 0;
+            width: 100%;
+            visibility: hidden;
+            animation: fadeInUp 2.5s forwards;
+        }
+
+        .slideshow {
+            position: relative;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
             display: flex;
             justify-content: center;
-            gap: 10px;
+            align-items: center;
+            border-radius: 10px;
         }
 
-        .social-icons a {
+        .slides {
+            display: flex;
+            transition: transform 1s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            max-width: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .buttons {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        button {
+            background-color: #910d0d;
             color: white;
-            font-size: 20px;
-            transition: 0.3s;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            margin: 5px;
+            border-radius: 5px;
+            font-size: 16px;
         }
 
-        .social-icons a:hover {
-            color: #ffcc00;
+        button:hover {
+            background-color: #303236;
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
-        .author {
+        .order-btn {
             margin-top: 20px;
-            font-size: 14px;
-            color: #ccc;
+            font-size: 18px;
+            padding: 12px 25px;
+            border-radius: 8px;
+        }
+
+        .phone {
+            font-size: 16px;  /* Сделаем текст чуть больше */
+            color: #ffffff;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            margin-top: 10px; /* Убираем лишний отступ */
+            padding: 8px 15px; /* Увеличим отступы для удобства */
+            border-radius: 25px;
+            background-color: #2b2929;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        .phone:hover {
+            background-color: rgba(0, 0, 0, 0.9); /* Делаем темнее при наведении */
+        }
+
+        .phone .icon {
+            margin-right: 8px; /* Отступ между иконкой и текстом */
+            font-size: 22px; /* Сделаем иконку чуть больше */
+        }
+
+        .phone-container {
+            position: relative;
+            margin-top: 20px; /* Отступ после кнопки заказа */
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        video {
+            width: 100%;
+            max-width: 600px;
+            max-height: 400px;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 15px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            visibility: hidden;
+            animation: fadeInUp 3s forwards;
         }
 
         @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .left-content, .right-content {
+                flex: 1 1 100%;
+                min-width: 100%;
+                padding: 10px;
+            }
+
             h1 {
                 font-size: 24px;
             }
+
             .info {
-                font-size: 14px;
+                font-size: 16px;
             }
-            button {
-                font-size: 12px;
-                padding: 8px 15px;
+
+            video {
+                max-width: 100%;
+                max-height: 300px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Апарат промивання авто пічки</h1>
-        <p class="info">Этот аппарат предназначен для эффективной очистки системы отопления автомобиля.</p>
-        <div class="info">
-            <h2>Преимущества:</h2>
-            <ul>
-                <li>Быстрая и эффективная промывка</li>
-                <li>Совместимость с разными моделями</li>
-                <li>Компактный и удобный в использовании</li>
-            </ul>
+        <div class="left-content">
+            <h1>Апарат промивання    авто пічки</h1>
+            <p class="info">Этот аппарат предназначен для эффективной очистки системы отопления автомобиля. Он помогает удалять загрязнения и накипь, продлевая срок службы печки.</p>
+            <div class="info">
+                <h2>Преимущества:</h2>
+                <ul>
+                    <li>Быстрая и эффективная промывка</li>
+                    <li>Совместимость с разными моделями</li>
+                    <li>Компактный и удобный в использовании</li>
+                </ul>
+            </div>
+            <button class="order-btn" onclick="orderProduct()">Заказать</button>
+            <!-- Блок звонка сразу после кнопки заказа -->
+            <div class="phone-container">
+                <a class="phone">
+                    <i class="fas fa-phone-alt icon"></i> Є питання телефонуй?: +380731826313
+                </a>
+            </div>
         </div>
-        <button class="order-btn" onclick="orderProduct()">Заказать</button>
-        <a class="phone" href="tel:+380731826313">
-            <i class="fas fa-phone-alt icon"></i> Телефон: +380731826313
-        </a>
-        <div class="social-icons">
-            <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <a href="#" target="_blank"><i class="fas fa-store"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+        <div class="right-content">
+            <div class="media-block">
+                <div class="slideshow">
+                    <div class="slides">
+                        <img class="slide" src="photo1.jpg" alt="Фото 1">
+                        <img class="slide" src="photo2.jpg" alt="Фото 2">
+                        <img class="slide" src="photo3.jpg" alt="Фото 3">
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button onclick="prevSlide()">&#10094; Назад</button>
+                    <button onclick="nextSlide()">Вперед &#10095;</button>
+                </div>
+            </div>
+            <div class="media-block">
+                <video controls>
+                    <source src="video.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает видео тег.
+                </video>
+            </div>
         </div>
-        <div class="author">&copy; 2025 Авторские права защищены</div>
     </div>
     <script>
+        let slideIndex = 0;
+        const slides = document.querySelector('.slides');
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        function showSlide(index) {
+            if (index >= totalSlides) slideIndex = 0;
+            if (index < 0) slideIndex = totalSlides - 1;
+            slides.style.transform = translateX(-${slideIndex * 100}%);
+        }
+
+        function nextSlide() {
+            slideIndex++;
+            showSlide(slideIndex);
+        }
+
+        function prevSlide() {
+            slideIndex--;
+            showSlide(slideIndex);
+        }
+
         function orderProduct() {
             let message = encodeURIComponent("Хочу заказать аппарат для промывки печки автомобиля!");
-            window.open(`https://t.me/gospodin88nikto?text=${message}`, '_blank');
+            let telegramURL = https://t.me/gospodin88nikto?text=${message};
+            window.open(telegramURL, '_blank');
         }
+
+        setInterval(nextSlide, 5000);
     </script>
 </body>
 </html>
