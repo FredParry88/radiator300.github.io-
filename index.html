@@ -32,9 +32,6 @@
             flex-wrap: wrap;
             justify-content: center;
             align-items: flex-start;
-            visibility: hidden;
-            transform: translateY(50px);
-            animation: fadeInUp 1.5s forwards;
         }
 
         .left-content, .right-content {
@@ -45,19 +42,6 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
-            visibility: hidden;
-            animation: fadeInUp 1s forwards;
-        }
-
-        @keyframes fadeInUp {
-            0% {
-                visibility: hidden;
-                transform: translateY(30px);
-            }
-            100% {
-                visibility: visible;
-                transform: translateY(0);
-            }
         }
 
         h1 {
@@ -67,8 +51,6 @@
             text-transform: uppercase;
             text-shadow: 15px 15px 15px rgba(0, 0, 0, 0.8);
             margin-bottom: 2px;
-            visibility: hidden;
-            animation: fadeInUp 1.5s forwards;
         }
 
         .info {
@@ -80,8 +62,6 @@
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.65);
             background-color: rgba(217, 63, 7, 0.1);
-            visibility: hidden;
-            animation: fadeInUp 2s forwards;
         }
 
         .media-block {
@@ -92,8 +72,6 @@
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.65);
             margin: 20px 0;
             width: 100%;
-            visibility: hidden;
-            animation: fadeInUp 2.5s forwards;
         }
 
         .slideshow {
@@ -190,8 +168,6 @@
             border-radius: 10px;
             margin-top: 15px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-            visibility: hidden;
-            animation: fadeInUp 3s forwards;
         }
 
         @media (max-width: 768px) {
