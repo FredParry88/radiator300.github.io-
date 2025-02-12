@@ -264,7 +264,7 @@
         function showSlide(index) {
             if (index >= totalSlides) slideIndex = 0;
             if (index < 0) slideIndex = totalSlides - 1;
-            slides.style.transform = translateX(-${slideIndex * 100}%);
+            slides.style.transform = `translateX(-${slideIndex * 100}%)`;
         }
 
         function nextSlide() {
@@ -279,7 +279,7 @@
 
         function orderProduct() {
             let message = encodeURIComponent("Хочу заказать аппарат для промывки печки автомобиля!");
-            let telegramURL = https://t.me/gospodin88nikto?text=${message};
+            let telegramURL = `https://t.me/gospodin88nikto?text=${message}`;
             window.open(telegramURL, '_blank');
         }
 
