@@ -277,28 +277,26 @@
     </div>
     <script>
 let slideIndex = 0;
-const slides = document.querySelectorAll('.slide'); // Берём все слайды
-const slidesContainer = document.querySelector('.slides'); // Контейнер слайдов
-const totalSlides = slides.length; // Общее число слайдов
+const slides = document.querySelectorAll('.slide');
+const slidesContainer = document.querySelector('.slides');
+const totalSlides = slides.length;
+let isTransitioning = false; // Флаг, предотвращающий спам нажатий
 
-// Устанавливаем ширину контейнера в зависимости от числа слайдов
+// Устанавливаем ширину контейнера
 slidesContainer.style.width = `${totalSlides * 100}%`;
-
-// Делаем все слайды одинаковой ширины
-slides.forEach(slide => {
-    slide.style.width = `${100 / totalSlides}%`;
-});
+slides.forEach(slide => slide.style.width = `${100 / totalSlides}%`);
 
 function showSlide(index) {
-    if (index >= totalSlides) {
-        slideIndex = 0; // Если конец — возвращаемся в начало
-    } else if (index < 0) {
-        slideIndex = totalSlides - 1; // Если влево за границу — возвращаемся в конец
-    } else {
-        slideIndex = index;
-    }
-    
-    let offset = -slideIndex * 100; // Смещение влево на нужный слайд
+    if (isTransitioning) return; // Если уже в процессе перехода — игнорируем клик
+
+    isTransitioning = true; // Блокируем повторные клики
+    setTimeout(() => isTransitioning = false, 500); // Разблокировка через 500 мс
+
+    if (index >= totalSlides) slideIndex = 0;
+    else if (index < 0) slideIndex = totalSlides - 1;
+    else slideIndex = index;
+
+    let offset = -slideIndex * 100;
     slidesContainer.style.transform = `translateX(${offset}%)`;
 }
 
@@ -310,7 +308,7 @@ function prevSlide() {
     showSlide(slideIndex - 1);
 }
 
-// Автоматическое переключение каждые 5 секунд
+// Автоматическое переключение
 setInterval(nextSlide, 5000);
         
         function orderProduct() {
