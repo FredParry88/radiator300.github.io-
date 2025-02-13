@@ -79,31 +79,24 @@
         .slideshow {
             position: relative;
             width: 100%;
-            max-width: 400px; /* Ограничиваем ширину слайдера */
+            max-width: 400px;
             overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             border-radius: 10px;
         }
-
         .slides {
             display: flex;
-            width: calc(100% * 3); /* Количество слайдов × 100% */
             transition: transform 0.5s ease-in-out;
         }
-
         .slide {
-            width: 100%;
-            flex: 0 0 100%; /* Каждый слайд занимает 100% ширины */
+            min-width: 100%;
+            flex: 0 0 100%;
             object-fit: cover;
             border-radius: 10px;
         }
-
         .buttons {
-            margin-top: 10px;
             display: flex;
             justify-content: center;
+            margin-top: 10px;
         }
 
         button {
