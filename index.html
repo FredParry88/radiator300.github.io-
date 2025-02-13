@@ -21,7 +21,7 @@
             height: 100vh;
             text-align: center;
             background: linear-gradient(to right, #323232, #b35e1a);
-            overflow-x: hidden; /* Отключаем горизонтальный скроллинг */
+            overflow-x: hidden;
         }
 
         .container {
@@ -51,7 +51,6 @@
             text-transform: uppercase;
             text-shadow: 15px 15px 15px rgba(0, 0, 0, 0.8);
             margin-bottom: 2px;
-            visibility: visible;
         }
 
         .info {
@@ -61,175 +60,101 @@
             padding: 20px;
             border: 2px solid #302f2f;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.65);
             background-color: rgba(217, 63, 7, 0.1);
-            visibility: visible;
         }
 
-        .media-block {
-            background: rgba(172, 50, 6, 0.1);
-            background-color: rgba(106, 35, 9, 0.1);
+        .chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
-            padding: 15px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.65);
-            margin: 20px 0;
-            width: 100%;
-        }
-
-        .slideshow {
-            position: relative;
-            width: 100%;
-            height: auto;
-            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 10px;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 10px;
+            flex-direction: column;
         }
 
-        .slides {
+        .chatbot-header {
+            background-color: #910d0d;
+            color: white;
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .message {
+            padding: 5px;
+            margin: 5px;
+            background-color: #e1e1e1;
+            border-radius: 5px;
+            max-width: 80%;
+        }
+
+        .user-message {
+            background-color: #910d0d;
+            color: white;
+            margin-left: auto;
+        }
+
+        .bot-message {
+            background-color: #f0f0f0;
+            color: #323232;
+        }
+
+        .chatbot-input {
             display: flex;
-            transition: transform 1s ease-in-out;
         }
 
-        .slide {
+        .chatbot-input input {
             width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
         }
 
-        .buttons {
-            margin-top: 10px;
-            display: flex;
-            justify-content: center;
-        }
-
-        button {
+        .chatbot-input button {
+            padding: 10px;
             background-color: #910d0d;
             color: white;
             border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            margin: 5px;
             border-radius: 5px;
-            font-size: 16px;
+            cursor: pointer;
         }
 
-        button:hover {
+        .chatbot-input button:hover {
             background-color: #303236;
-            transform: scale(1.1);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
-        .order-btn {
-            margin-top: 20px;
-            font-size: 18px;
-            padding: 12px 25px;
-            border-radius: 8px;
-        }
-
-        .phone {
-            font-size: 16px;
-            color: #ffffff;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
+        .options {
+            display: flex;
+            justify-content: space-around;
             margin-top: 10px;
-            padding: 8px 15px;
-            border-radius: 25px;
-            background-color: #2b2929;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-            transition: all 0.3s;
         }
 
-        .phone:hover {
-            background-color: rgba(0, 0, 0, 0.9);
+        .option-button {
+            background-color: #910d0d;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
-        .phone .icon {
-            margin-right: 8px;
-            font-size: 22px;
-        }
-
-        .phone-container {
-            position: relative;
-            margin-top: 20px;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-        }
-
-        video {
-            width: 100%;
-            max-width: 600px;
-            max-height: 400px;
-            height: auto;
-            border-radius: 10px;
-            margin-top: 15px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                justify-content: flex-start;
-                padding: 10px;
-            }
-
-            .left-content, .right-content {
-                flex: 1 1 100%;
-                min-width: 100%;
-                padding: 10px;
-                text-align: center;
-            }
-
-            h1 {
-                font-size: 28px;
-                padding: 0 10px;
-            }
-
-            .info {
-                font-size: 16px;
-                padding: 15px;
-            }
-
-            .phone-container {
-                display: block;
-                text-align: center;
-            }
-
-            video {
-                max-width: 100%;
-                max-height: 300px;
-            }
-
-            .buttons {
-                flex-direction: column;
-            }
-
-            .order-btn {
-                width: 100%;
-                font-size: 20px;
-                padding: 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 22px;
-            }
-
-            .info {
-                font-size: 14px;
-            }
-
-            .phone {
-                font-size: 14px;
-                padding: 6px 12px;
-            }
+        .option-button:hover {
+            background-color: #303236;
         }
     </style>
 </head>
@@ -237,22 +162,11 @@
     <div class="container">
         <div class="left-content">
             <h1>Апарат промивання авто пічки</h1>
-            <p class="info">Апарат для промивки пічки автомобіля — ваш надійний помічник для чистоти та тепла в салоні! Забудьте про засмічені канали та поганий обігрів. Цей компактний пристрій швидко очистить систему від накипу і бруду, відновивши потужність пічки. Простий в використанні, підходить для всіх моделей — для справжніх автомобільних любителів!.</p>
-            <div class="info">
-                <h2>Преимущества:</h2>
-                <ul>
-                    <li>Швидка очистка — повертає пічці нове життя</li>
-                    <li>Універсальність — підходить для всіх авто моделей.</li>
-                    <li>Економія часу — ефективно та без зайвих зусиль.</li>
-                    <li>Простота в використанні — легко налаштувати та працювати.</li>
-                    <li>Збільшує термін служби пічки — продовжує «здоров'я» вашої системи обігріву.</li>
-                </ul>
-            </div>
+            <p class="info">Апарат для промивки пічки автомобіля — ваш надійний помічник для чистоти та тепла в салоні! Забудьте про засмічені канали та поганий обігрів. Цей компактний пристрій швидко очистить систему від накипу і бруду, відновивши потужність пічки.</p>
             <button class="order-btn" onclick="orderProduct()">Замовити</button>
-            <!-- Блок звонка сразу после кнопки заказа -->
             <div class="phone-container">
                 <a class="phone">
-                    <i class="fas fa-phone-alt icon"></i> Є питання телефонуй?: +380731826313
+                    <i class="fas fa-phone-alt icon"></i> Є питання телефонуй: +380731826313
                 </a>
             </div>
         </div>
@@ -278,6 +192,21 @@
             </div>
         </div>
     </div>
+
+    <!-- Чат-бот -->
+    <div class="chatbot">
+        <div class="chatbot-header">
+            Чат-бот допомоги
+        </div>
+        <div class="messages" id="chat-messages">
+            <div class="message bot-message">Привіт! Чим можу допомогти?</div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="user-input" placeholder="Напишіть своє питання...">
+            <button onclick="sendMessage()">Відправити</button>
+        </div>
+    </div>
+
     <script>
         let slideIndex = 0;
         const slides = document.querySelector('.slides');
@@ -303,6 +232,45 @@
             let message = encodeURIComponent("Хочу замовити апарат для промиву пічки автомобіля!");
             let telegramURL = `https://t.me/gospodin88nikto?text=${message}`;
             window.open(telegramURL, '_blank');
+        }
+
+        function sendMessage() {
+            let userMessage = document.getElementById('user-input').value;
+            if (userMessage.trim() === '') return;
+
+            // Показать сообщение пользователя
+            let messagesContainer = document.getElementById('chat-messages');
+            let userMessageDiv = document.createElement('div');
+            userMessageDiv.classList.add('message', 'user-message');
+            userMessageDiv.textContent = userMessage;
+            messagesContainer.appendChild(userMessageDiv);
+
+            // Ответ бота
+            let botMessageDiv = document.createElement('div');
+            botMessageDiv.classList.add('message', 'bot-message');
+            let userText = userMessage.toLowerCase();
+
+            if (userText.includes('переваги') || userText.includes('характеристики')) {
+                botMessageDiv.textContent = "Переваги апарату: Швидка очистка, універсальність, економія часу, простота в використанні та довговічність.";
+            } else if (userText.includes('оплата') || userText.includes('як оплатити')) {
+                botMessageDiv.textContent = "Ми приймаємо оплату через банківські картки та готівкою при отриманні.";
+            } else if (userText.includes('доставка') || userText.includes('замовити доставку')) {
+                botMessageDiv.textContent = "Доставка здійснюється по всій Україні. Залиште свою адресу для точного розрахунку вартості.";
+            } else if (userText.includes('як працює') || userText.includes('як використовувати')) {
+                botMessageDiv.textContent = "Просто підключіть апарат до системи пічки автомобіля та запустіть очищення. Користуватися ним дуже легко!";
+            } else if (userText.includes('гарантія')) {
+                botMessageDiv.textContent = "На апарат не надається гарантія (,але якщо є питання звертайтесь по номеру - 093 500 50 08";
+            } else if (userText.includes('ціна') || userText.includes('скільки коштує')) {
+                botMessageDiv.textContent = "Ціна апарату для промивки пічки складає 2999 грн.";
+            } else {
+                botMessageDiv.textContent = "Я не зовсім зрозумів. Сформулюйте ваше питання іншим чином.";
+            }
+
+            messagesContainer.appendChild(botMessageDiv);
+
+            // Очистить поле ввода
+            document.getElementById('user-input').value = '';
+            messagesContainer.scrollTop = messagesContainer.scrollHeight; // Прокрутка вниз
         }
 
         setInterval(nextSlide, 5000);
