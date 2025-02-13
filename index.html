@@ -172,10 +172,16 @@
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
-        .price-info {
+        .price-info-container {
+            display: flex;
+            align-items: center;
             margin-top: 20px;
+        }
+
+        .price-info {
             font-size: 22px;
             color: #ff9f00;
+            margin-right: 20px;
         }
 
         .price-info .old-price {
@@ -265,7 +271,13 @@
                     <li>Збільшує термін служби пічки — продовжує «здоров'я» вашої системи обігріву.</li>
                 </ul>
             </div>
-            <button class="order-btn" onclick="orderProduct()">Замовити</button>
+            <div class="price-info-container">
+                <button class="order-btn" onclick="orderProduct()">Замовити</button>
+                <div class="price-info">
+                    <span class="old-price">5000 UAH</span>
+                    <span class="new-price">3500 UAH</span>
+                </div>
+            </div>
             <!-- Блок звонка сразу после кнопки заказа -->
             <div class="phone-container">
                 <a class="phone">
@@ -292,10 +304,6 @@
                     <source src="video.mp4" type="video/mp4">
                     Браузер не підтримує відео тег.
                 </video>
-            </div>
-            <div class="price-info">
-                <span class="old-price">5000 UAH</span>
-                <span class="new-price">3500 UAH</span>
             </div>
         </div>
     </div>
