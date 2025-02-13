@@ -255,12 +255,17 @@
         </div>
         <div class="right-content">
             <div class="media-block">
-                <div class="slideshow">
-                    <div class="slides">
-                        <img class="slide" src="photo1.jpg" alt="Фото 1">
-                        <img class="slide" src="photo2.jpg" alt="Фото 2">
-                        <img class="slide" src="photo3.jpg" alt="Фото 3">
-                    </div>
+<div class="slideshow">
+    <div class="slide-track">
+        <img class="slide" src="photo1.jpg" alt="Фото 1">
+        <img class="slide" src="photo2.jpg" alt="Фото 2">
+        <img class="slide" src="photo3.jpg" alt="Фото 3">
+    </div>
+</div>
+<div class="buttons">
+    <button onclick="prevSlide()">&#10094; Назад</button>
+    <button onclick="nextSlide()">Вперед &#10095;</button>
+</div>
                 </div>
                 <div class="buttons">
                     <button onclick="prevSlide()">&#10094; Назад</button>
@@ -277,27 +282,27 @@
     </div>
     <script>
 let slideIndex = 0;
-const slides = document.querySelectorAll('.slide');
-const slidesContainer = document.querySelector('.slides');
+const slides = document.querySelectorAll('.slide'); // Все слайды
+const slideTrack = document.querySelector('.slide-track'); // Контейнер
 const totalSlides = slides.length;
-let isTransitioning = false; // Флаг, предотвращающий спам нажатий
-
-// Устанавливаем ширину контейнера
-slidesContainer.style.width = `${totalSlides * 100}%`;
-slides.forEach(slide => slide.style.width = `${100 / totalSlides}%`);
+let isTransitioning = false; // Защита от спама
 
 function showSlide(index) {
-    if (isTransitioning) return; // Если уже в процессе перехода — игнорируем клик
+    if (isTransitioning) return; // Блокируем повторные клики
 
-    isTransitioning = true; // Блокируем повторные клики
+    isTransitioning = true;
     setTimeout(() => isTransitioning = false, 500); // Разблокировка через 500 мс
 
-    if (index >= totalSlides) slideIndex = 0;
-    else if (index < 0) slideIndex = totalSlides - 1;
-    else slideIndex = index;
+    if (index >= totalSlides) {
+        slideIndex = 0; // Если в конец — начинаем сначала
+    } else if (index < 0) {
+        slideIndex = totalSlides - 1; // Если влево за границу — идём в конец
+    } else {
+        slideIndex = index;
+    }
 
-    let offset = -slideIndex * 100;
-    slidesContainer.style.transform = `translateX(${offset}%)`;
+    let offset = -slideIndex * 100; // Смещение влево на нужный слайд
+    slideTrack.style.transform = `translateX(${offset}%)`;
 }
 
 function nextSlide() {
