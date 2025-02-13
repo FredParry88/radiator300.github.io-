@@ -17,30 +17,41 @@
             color: rgb(213, 213, 213);
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             height: 100vh;
             text-align: center;
             background: linear-gradient(to right, #323232, #b35e1a);
-            overflow-x: hidden;
+            overflow-x: hidden; /* Отключаем горизонтальный скроллинг */
         }
 
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1100px;
             padding: 20px;
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
             justify-content: center;
+            align-items: flex-start;
+        }
+
+        .left-content, .right-content {
+            flex: 1;
+            min-width: 300px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
             align-items: center;
         }
 
-        .title {
+        h1 {
             font-size: 40px;
             font-weight: bold;
             font-family: Fantasy;
             text-transform: uppercase;
-            text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.8);
-            margin-bottom: 20px;
+            text-shadow: 15px 15px 15px rgba(0, 0, 0, 0.8);
+            margin-bottom: 2px;
+            visibility: visible;
         }
 
         .info {
@@ -52,81 +63,83 @@
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.65);
             background-color: rgba(217, 63, 7, 0.1);
+            visibility: visible;
+        }
+
+        .media-block {
+            background: rgba(172, 50, 6, 0.1);
+            background-color: rgba(106, 35, 9, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.65);
+            margin: 20px 0;
+            width: 100%;
         }
 
         .slideshow {
-            position: relative;
-            width: 100%;
-            max-width: 1000px;
-            height: 500px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            border-radius: 10px;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 10px;
         }
 
         .slides {
-            display: flex;
-            transition: transform 1s ease-in-out;
+    display: flex;
+    width: 300%; /* Если 3 изображения */
+    transition: transform 0.5s ease-in-out;
         }
 
         .slide {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    object-fit: cover; /* Заполняет контейнер без искажений */
+    border-radius: 10px;
         }
 
-        .price-info {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
+        .buttons {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
         }
 
-        .discount-price {
-            color: red;
-            text-decoration: line-through;
-            margin-right: 10px;
-        }
-
-        .current-price {
-            color: #fff;
-            font-size: 28px;
-            background-color: #910d0d;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-
-        .order-btn {
-            font-size: 20px;
-            padding: 15px 30px;
-            border-radius: 8px;
+        button {
             background-color: #910d0d;
             color: white;
             border: none;
+            padding: 10px 20px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 20px;
+            transition: all 0.3s ease-in-out;
+            margin: 5px;
+            border-radius: 5px;
+            font-size: 16px;
         }
 
-        .order-btn:hover {
+        button:hover {
             background-color: #303236;
-            transform: scale(1.05);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
-        .phone-container {
+        .order-btn {
             margin-top: 20px;
             font-size: 18px;
+            padding: 12px 25px;
+            border-radius: 8px;
         }
 
         .phone {
+            font-size: 16px;
             color: #ffffff;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            padding: 10px 20px;
-            background-color: #2b2929;
+            margin-top: 10px;
+            padding: 8px 15px;
             border-radius: 25px;
+            background-color: #2b2929;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
             transition: all 0.3s;
         }
@@ -140,58 +153,131 @@
             font-size: 22px;
         }
 
+        .phone-container {
+            position: relative;
+            margin-top: 20px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        video {
+            width: 100%;
+            max-width: 600px;
+            max-height: 400px;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 15px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
         @media (max-width: 768px) {
             .container {
+                flex-direction: column;
+                justify-content: flex-start;
                 padding: 10px;
             }
 
-            .title {
-                font-size: 28px;
+            .left-content, .right-content {
+                flex: 1 1 100%;
+                min-width: 100%;
+                padding: 10px;
+                text-align: center;
             }
 
-            .price-info {
-                font-size: 18px;
+            h1 {
+                font-size: 28px;
+                padding: 0 10px;
+            }
+
+            .info {
+                font-size: 16px;
+                padding: 15px;
+            }
+
+            .phone-container {
+                display: block;
+                text-align: center;
+            }
+
+            video {
+                max-width: 100%;
+                max-height: 300px;
+            }
+
+            .buttons {
+                flex-direction: column;
             }
 
             .order-btn {
-                font-size: 18px;
-                padding: 12px 25px;
+                width: 100%;
+                font-size: 20px;
+                padding: 15px;
             }
         }
 
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 22px;
+            }
+
+            .info {
+                font-size: 14px;
+            }
+
+            .phone {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="title">Апарат для промивки пічки авто</h1>
-        <p class="info">Апарат для промивки пічки автомобіля — ваш надійний помічник для чистоти та тепла в салоні! Забудьте про засмічені канали та поганий обігрів. Цей компактний пристрій швидко очистить систему від накипу і бруду, відновивши потужність пічки. Простий в використанні, підходить для всіх моделей — для справжніх автомобільних любителів!</p>
-
-        <!-- Слайдер -->
-        <div class="slideshow">
-            <div class="slides">
-                <img class="slide" src="photo1.jpg" alt="Фото 1">
-                <img class="slide" src="photo2.jpg" alt="Фото 2">
-                <img class="slide" src="photo3.jpg" alt="Фото 3">
+        <div class="left-content">
+            <h1>Апарат промивання авто пічки</h1>
+            <p class="info">Апарат для промивки пічки автомобіля — ваш надійний помічник для чистоти та тепла в салоні! Забудьте про засмічені канали та поганий обігрів. Цей компактний пристрій швидко очистить систему від накипу і бруду, відновивши потужність пічки. Простий в використанні, підходить для всіх моделей — для справжніх автомобільних любителів!.</p>
+            <div class="info">
+                <h2>Преимущества:</h2>
+                <ul>
+                    <li>Швидка очистка — повертає пічці нове життя</li>
+                    <li>Універсальність — підходить для всіх авто моделей.</li>
+                    <li>Економія часу — ефективно та без зайвих зусиль.</li>
+                    <li>Простота в використанні — легко налаштувати та працювати.</li>
+                    <li>Збільшує термін служби пічки — продовжує «здоров'я» вашої системи обігріву.</li>
+                </ul>
+            </div>
+            <button class="order-btn" onclick="orderProduct()">Замовити</button>
+            <!-- Блок звонка сразу после кнопки заказа -->
+            <div class="phone-container">
+                <a class="phone">
+                    <i class="fas fa-phone-alt icon"></i> Є питання телефонуй?: +380731826313
+                </a>
             </div>
         </div>
-
-        <!-- Информация о цене -->
-        <div class="price-info">
-            <span class="discount-price">₴5000</span>
-            <span class="current-price">₴3500</span>
-        </div>
-
-        <!-- Кнопка заказать -->
-        <button class="order-btn" onclick="orderProduct()">Заказать</button>
-
-        <!-- Контакт для связи -->
-        <div class="phone-container">
-            <a class="phone" href="tel:+380731826313">
-                <i class="fas fa-phone-alt icon"></i> Є питання телефонуй: +380731826313
-            </a>
+        <div class="right-content">
+            <div class="media-block">
+                <div class="slideshow">
+                    <div class="slides">
+                        <img class="slide" src="photo1.jpg" alt="Фото 1">
+                        <img class="slide" src="photo2.jpg" alt="Фото 2">
+                        <img class="slide" src="photo3.jpg" alt="Фото 3">
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button onclick="prevSlide()">&#10094; Назад</button>
+                    <button onclick="nextSlide()">Вперед &#10095;</button>
+                </div>
+            </div>
+            <div class="media-block">
+                <video controls>
+                    <source src="video.mp4" type="video/mp4">
+                    Браузер не підтримує відео тег.
+                </video>
+            </div>
         </div>
     </div>
-
     <script>
         let slideIndex = 0;
         const slides = document.querySelector('.slides');
@@ -213,14 +299,13 @@
             showSlide(slideIndex);
         }
 
-        // Смена слайдов каждые 5 секунд
-        setInterval(nextSlide, 5000);
-
         function orderProduct() {
             let message = encodeURIComponent("Хочу замовити апарат для промиву пічки автомобіля!");
             let telegramURL = `https://t.me/gospodin88nikto?text=${message}`;
             window.open(telegramURL, '_blank');
         }
+
+        setInterval(nextSlide, 5000);
     </script>
 </body>
 </html>
