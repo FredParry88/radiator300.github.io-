@@ -21,7 +21,7 @@
             height: 100vh;
             text-align: center;
             background: linear-gradient(to right, #323232, #b35e1a);
-            overflow-x: hidden;
+            overflow-x: hidden; /* Отключаем горизонтальный скроллинг */
         }
 
         .container {
@@ -79,7 +79,7 @@
         .slideshow {
             position: relative;
             width: 100%;
-            height: 400px; /* Устанавливаем фиксированную высоту */
+            height: auto;
             overflow: hidden;
             display: flex;
             justify-content: center;
@@ -90,13 +90,12 @@
         .slides {
             display: flex;
             transition: transform 1s ease-in-out;
-            width: 100%; /* Общее количество слайдов */
         }
 
         .slide {
-            width: 100%; /* Каждый слайд занимает 100% ширины контейнера */
-            height: 100%;
-            object-fit: cover; /* Обеспечивает одинаковое соотношение сторон для всех слайдов */
+            width: 100%;
+            height: auto;
+            object-fit: cover;
             border-radius: 10px;
         }
 
@@ -147,6 +146,11 @@
 
         .phone:hover {
             background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .phone .icon {
+            margin-right: 8px;
+            font-size: 22px;
         }
 
         .phone-container {
@@ -274,7 +278,6 @@
             </div>
         </div>
     </div>
-
     <script>
         let slideIndex = 0;
         const slides = document.querySelector('.slides');
@@ -296,7 +299,13 @@
             showSlide(slideIndex);
         }
 
-        setInterval(nextSlide, 5000); // Автоматическая смена слайда каждые 5 секунд
+        function orderProduct() {
+            let message = encodeURIComponent("Хочу замовити апарат для промиву пічки автомобіля!");
+            let telegramURL = `https://t.me/gospodin88nikto?text=${message}`;
+            window.open(telegramURL, '_blank');
+        }
+
+        setInterval(nextSlide, 5000);
     </script>
 </body>
 </html>
