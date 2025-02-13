@@ -79,7 +79,7 @@
         .slideshow {
             position: relative;
             width: 100%;
-            height: auto;
+            height: 400px;
             overflow: hidden;
             display: flex;
             justify-content: center;
@@ -90,11 +90,12 @@
         .slides {
             display: flex;
             transition: transform 1s ease-in-out;
+            width: 100%;
         }
 
         .slide {
             width: 100%;
-            height: auto;
+            height: 400px;
             object-fit: cover;
             border-radius: 10px;
         }
@@ -283,4 +284,29 @@
         const slides = document.querySelector('.slides');
         const totalSlides = document.querySelectorAll('.slide').length;
 
-        function
+        function showSlide(index) {
+            if (index >= totalSlides) slideIndex = 0;
+            if (index < 0) slideIndex = totalSlides - 1;
+            slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+        }
+
+        function nextSlide() {
+            slideIndex++;
+            showSlide(slideIndex);
+        }
+
+        function prevSlide() {
+            slideIndex--;
+            showSlide(slideIndex);
+        }
+
+        function orderProduct() {
+            let message = encodeURIComponent("Хочу замовити апарат для промиву пічки автомобіля!");
+            let telegramURL = `https://t.me/gospodin88nikto?text=${message}`;
+            window.open(telegramURL, '_blank');
+        }
+
+        setInterval(nextSlide, 5000); // Переключение слайдов каждые 5 секунд
+    </script>
+</body>
+</html>
