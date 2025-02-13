@@ -77,26 +77,26 @@
         }
 
         .slideshow {
-        position: relative;
-        width: 100%;
-        max-width: 600px; /* Фиксируем максимальную ширину */
-        height: 350px; /* Установите высоту, соответствующую изображениям */
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 10px;
+   position: relative;
+    width: 100%;
+    max-width: 600px; /* Фиксируем максимальную ширину */
+    height: 350px; /* Установите высоту, соответствующую изображениям */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
         }
         .slides {
     display: flex;
-    width: calc(100% * 3); /* Если 3 изображения */
-    transition: transform 0.8s ease-in-out;
+    width: 100%;
+    transition: transform 1s ease-in-out;
 }
         .slide {
-            min-width: 100%;
-            flex: 0 0 100%;
-            object-fit: cover;
-            border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Обрезает изображение, чтобы сохранить пропорции */
+    border-radius: 10px;
         }
         .buttons {
             display: flex;
@@ -278,25 +278,31 @@
         </div>
     </div>
     <script>
-        let slideIndex = 0;
-        const slides = document.querySelector(".slides");
-        const totalSlides = document.querySelectorAll(".slide").length;
+let slideIndex = 0;
+const slides = document.querySelector('.slides');
+const totalSlides = document.querySelectorAll('.slide').length;
 
     function showSlide(index) {
     if (index >= totalSlides) slideIndex = 0;
     if (index < 0) slideIndex = totalSlides - 1;
-    slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+    
+    let offset = -slideIndex * 100; // Смещение на ширину слайда
+    slides.style.transform = `translateX(${offset}%)`;
 }
 
         function nextSlide() {
-            showSlide(slideIndex + 1);
+        slideIndex++;
+        showSlide(slideIndex);
+
         }
 
         function prevSlide() {
-            showSlide(slideIndex - 1);
+        slideIndex--;
+        showSlide(slideIndex);
         }
 
-        setInterval(nextSlide, 5000);
+// Автоматическое переключение каждые 5 секунд
+setInterval(nextSlide, 5000);
         
         function orderProduct() {
             let message = encodeURIComponent("Хочу замовити апарат для промиву пічки автомобіля!");
