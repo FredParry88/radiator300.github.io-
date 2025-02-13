@@ -77,26 +77,26 @@
         }
 
         .slideshow {
-    position: relative;
-    width: 100%;
-    max-width: 600px;
-    height: 350px;
-    overflow: hidden;
-    border-radius: 10px;
+            position: relative;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
         }
 
         .slides {
-    display: flex;
-    width: 300%; /* Если 3 изображения */
-    transition: transform 0.5s ease-in-out;
+            display: flex;
+            transition: transform 1s ease-in-out;
         }
 
         .slide {
-    width: 100%;
-    height: 100%;
-    flex-shrink: 0;
-    object-fit: cover; /* Заполняет контейнер без искажений */
-    border-radius: 10px;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
         }
 
         .buttons {
@@ -170,6 +170,23 @@
             border-radius: 10px;
             margin-top: 15px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .price-info {
+            margin-top: 20px;
+            font-size: 22px;
+            color: #ff9f00;
+        }
+
+        .price-info .old-price {
+            text-decoration: line-through;
+            color: #d1d1d1;
+            margin-right: 10px;
+        }
+
+        .price-info .new-price {
+            font-weight: bold;
+            color: #ff5e00;
         }
 
         @media (max-width: 768px) {
@@ -275,6 +292,10 @@
                     <source src="video.mp4" type="video/mp4">
                     Браузер не підтримує відео тег.
                 </video>
+            </div>
+            <div class="price-info">
+                <span class="old-price">5000 UAH</span>
+                <span class="new-price">3500 UAH</span>
             </div>
         </div>
     </div>
