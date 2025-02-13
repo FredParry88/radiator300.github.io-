@@ -77,25 +77,23 @@
         }
 
         .slideshow {
-   position: relative;
+    position: relative;
     width: 100%;
-    max-width: 600px; /* Фиксируем максимальную ширину */
-    height: 350px; /* Установите высоту, соответствующую изображениям */
+    max-width: 600px;
+    height: 350px;
     overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border-radius: 10px;
         }
         .slides {
     display: flex;
-    width: 100%;
-    transition: transform 1s ease-in-out;
+    width: 300%; /* Если 3 изображения */
+    transition: transform 0.5s ease-in-out;
 }
         .slide {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Обрезает изображение, чтобы сохранить пропорции */
+    flex-shrink: 0;
+    object-fit: cover; /* Заполняет контейнер без искажений */
     border-radius: 10px;
         }
         .buttons {
@@ -279,27 +277,38 @@
     </div>
     <script>
 let slideIndex = 0;
-const slides = document.querySelector('.slides');
-const totalSlides = document.querySelectorAll('.slide').length;
+const slides = document.querySelectorAll('.slide'); // Берём все слайды
+const slidesContainer = document.querySelector('.slides'); // Контейнер слайдов
+const totalSlides = slides.length; // Общее число слайдов
 
-    function showSlide(index) {
-    if (index >= totalSlides) slideIndex = 0;
-    if (index < 0) slideIndex = totalSlides - 1;
+// Устанавливаем ширину контейнера в зависимости от числа слайдов
+slidesContainer.style.width = `${totalSlides * 100}%`;
+
+// Делаем все слайды одинаковой ширины
+slides.forEach(slide => {
+    slide.style.width = `${100 / totalSlides}%`;
+});
+
+function showSlide(index) {
+    if (index >= totalSlides) {
+        slideIndex = 0; // Если конец — возвращаемся в начало
+    } else if (index < 0) {
+        slideIndex = totalSlides - 1; // Если влево за границу — возвращаемся в конец
+    } else {
+        slideIndex = index;
+    }
     
-    let offset = -slideIndex * 100; // Смещение на ширину слайда
-    slides.style.transform = `translateX(${offset}%)`;
+    let offset = -slideIndex * 100; // Смещение влево на нужный слайд
+    slidesContainer.style.transform = `translateX(${offset}%)`;
 }
 
-        function nextSlide() {
-        slideIndex++;
-        showSlide(slideIndex);
+function nextSlide() {
+    showSlide(slideIndex + 1);
+}
 
-        }
-
-        function prevSlide() {
-        slideIndex--;
-        showSlide(slideIndex);
-        }
+function prevSlide() {
+    showSlide(slideIndex - 1);
+}
 
 // Автоматическое переключение каждые 5 секунд
 setInterval(nextSlide, 5000);
