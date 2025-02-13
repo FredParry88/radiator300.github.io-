@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Апарат промивання пічки авто</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Подключаем Font Awesome для иконок -->
     <style>
         * {
             box-sizing: border-box;
@@ -21,7 +21,7 @@
             height: 100vh;
             text-align: center;
             background: linear-gradient(to right, #323232, #b35e1a);
-            overflow-x: hidden;
+            overflow-x: hidden; /* Отключаем горизонтальный скроллинг */
         }
 
         .container {
@@ -128,27 +128,6 @@
             font-size: 18px;
             padding: 12px 25px;
             border-radius: 8px;
-            position: relative;
-        }
-
-        .price-reduced {
-            position: absolute;
-            right: -70px;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: #ff5e00;
-            padding: 8px 20px;
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-            border-radius: 25px;
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-            transition: all 0.3s ease;
-        }
-
-        .price-reduced:hover {
-            background-color: #d75b00;
-            transform: translateY(-50%) scale(1.1);
         }
 
         .phone {
@@ -269,10 +248,8 @@
                     <li>Збільшує термін служби пічки — продовжує «здоров'я» вашої системи обігріву.</li>
                 </ul>
             </div>
-            <div style="position: relative; display: inline-flex; align-items: center;">
-                <button class="order-btn" onclick="orderProduct()">Замовити</button>
-                <div class="price-reduced">Цена снижена!</div>
-            </div>
+            <button class="order-btn" onclick="orderProduct()">Замовити</button>
+            <!-- Блок звонка сразу после кнопки заказа -->
             <div class="phone-container">
                 <a class="phone">
                     <i class="fas fa-phone-alt icon"></i> Є питання телефонуй?: +380731826313
