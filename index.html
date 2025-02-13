@@ -4,12 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Апарат промивання пічки авто</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Подключаем Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
+        * { box-sizing: border-box; }
         body {
             margin: 0;
             padding: 0;
@@ -18,12 +15,11 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            height: 100vh;
+            min-height: 100vh;
             text-align: center;
             background: linear-gradient(to right, #323232, #b35e1a);
-            overflow-x: hidden; /* Отключаем горизонтальный скроллинг */
+            overflow-x: hidden;
         }
-
         .container {
             width: 100%;
             max-width: 1100px;
@@ -31,205 +27,83 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            align-items: flex-start;
         }
-
         .left-content, .right-content {
             flex: 1;
             min-width: 300px;
             padding: 15px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
+            text-align: center;
         }
-
         h1 {
             font-size: 40px;
-            font-weight: bold;
-            font-family: Fantasy;
             text-transform: uppercase;
-            text-shadow: 15px 15px 15px rgba(0, 0, 0, 0.8);
-            margin-bottom: 2px;
-            visibility: visible;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
         }
-
         .info {
             font-size: 18px;
             line-height: 1.5;
-            margin-bottom: 20px;
             padding: 20px;
-            border: 2px solid #302f2f;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.65);
-            background-color: rgba(217, 63, 7, 0.1);
-            visibility: visible;
+            background: rgba(217, 63, 7, 0.1);
         }
-
-        .media-block {
-            background: rgba(172, 50, 6, 0.1);
-            background-color: rgba(106, 35, 9, 0.1);
-            border-radius: 10px;
-            padding: 15px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.65);
-            margin: 20px 0;
-            width: 100%;
-        }
-
         .slideshow {
             position: relative;
             width: 100%;
-            height: auto;
+            max-width: 500px;
             overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             border-radius: 10px;
         }
-
         .slides {
             display: flex;
             transition: transform 1s ease-in-out;
         }
-
         .slide {
             width: 100%;
-            height: auto;
             object-fit: cover;
             border-radius: 10px;
         }
-
         .buttons {
-            margin-top: 10px;
             display: flex;
             justify-content: center;
+            margin-top: 10px;
         }
-
         button {
             background-color: #910d0d;
             color: white;
-            border: none;
             padding: 10px 20px;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            margin: 5px;
             border-radius: 5px;
-            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
         }
-
-        button:hover {
-            background-color: #303236;
-            transform: scale(1.1);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
-
-        .order-btn {
+        button:hover { background-color: #303236; }
+        .phone-container {
             margin-top: 20px;
-            font-size: 18px;
-            padding: 12px 25px;
-            border-radius: 8px;
         }
-
         .phone {
             font-size: 16px;
             color: #ffffff;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            margin-top: 10px;
             padding: 8px 15px;
+            background: #2b2929;
             border-radius: 25px;
-            background-color: #2b2929;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-            transition: all 0.3s;
-        }
-
-        .phone:hover {
-            background-color: rgba(0, 0, 0, 0.9);
-        }
-
-        .phone .icon {
-            margin-right: 8px;
-            font-size: 22px;
-        }
-
-        .phone-container {
-            position: relative;
-            margin-top: 20px;
             display: inline-flex;
-            justify-content: center;
             align-items: center;
-            z-index: 999;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
-
+        .phone:hover { background: rgba(0, 0, 0, 0.9); }
         video {
             width: 100%;
             max-width: 600px;
-            max-height: 400px;
-            height: auto;
             border-radius: 10px;
             margin-top: 15px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
-
         @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                justify-content: flex-start;
-                padding: 10px;
-            }
-
-            .left-content, .right-content {
-                flex: 1 1 100%;
-                min-width: 100%;
-                padding: 10px;
-                text-align: center;
-            }
-
-            h1 {
-                font-size: 28px;
-                padding: 0 10px;
-            }
-
-            .info {
-                font-size: 16px;
-                padding: 15px;
-            }
-
-            .phone-container {
-                display: block;
-                text-align: center;
-            }
-
-            video {
-                max-width: 100%;
-                max-height: 300px;
-            }
-
-            .buttons {
-                flex-direction: column;
-            }
-
-            .order-btn {
-                width: 100%;
-                font-size: 20px;
-                padding: 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 22px;
-            }
-
-            .info {
-                font-size: 14px;
-            }
-
-            .phone {
-                font-size: 14px;
-                padding: 6px 12px;
-            }
+            .container { flex-direction: column; }
+            h1 { font-size: 28px; }
+            .info { font-size: 16px; padding: 15px; }
         }
     </style>
 </head>
@@ -237,75 +111,47 @@
     <div class="container">
         <div class="left-content">
             <h1>Апарат промивання авто пічки</h1>
-            <p class="info">Апарат для промивки пічки автомобіля — ваш надійний помічник для чистоти та тепла в салоні! Забудьте про засмічені канали та поганий обігрів. Цей компактний пристрій швидко очистить систему від накипу і бруду, відновивши потужність пічки. Простий в використанні, підходить для всіх моделей — для справжніх автомобільних любителів!.</p>
-            <div class="info">
-                <h2>Преимущества:</h2>
-                <ul>
-                    <li>Швидка очистка — повертає пічці нове життя</li>
-                    <li>Універсальність — підходить для всіх авто моделей.</li>
-                    <li>Економія часу — ефективно та без зайвих зусиль.</li>
-                    <li>Простота в використанні — легко налаштувати та працювати.</li>
-                    <li>Збільшує термін служби пічки — продовжує «здоров'я» вашої системи обігріву.</li>
-                </ul>
-            </div>
+            <p class="info">Апарат для промивки пічки автомобіля – ваш надійний помічник...</p>
             <button class="order-btn" onclick="orderProduct()">Замовити</button>
-            <!-- Блок звонка сразу после кнопки заказа -->
             <div class="phone-container">
-                <a class="phone">
-                    <i class="fas fa-phone-alt icon"></i> Є питання телефонуй?: +380731826313
+                <a class="phone" href="tel:+380731826313">
+                    <i class="fas fa-phone-alt"></i> +380731826313
                 </a>
             </div>
         </div>
         <div class="right-content">
-            <div class="media-block">
-                <div class="slideshow">
-                    <div class="slides">
-                        <img class="slide" src="photo1.jpg" alt="Фото 1">
-                        <img class="slide" src="photo2.jpg" alt="Фото 2">
-                        <img class="slide" src="photo3.jpg" alt="Фото 3">
-                    </div>
-                </div>
-                <div class="buttons">
-                    <button onclick="prevSlide()">&#10094; Назад</button>
-                    <button onclick="nextSlide()">Вперед &#10095;</button>
+            <div class="slideshow">
+                <div class="slides">
+                    <img class="slide" src="photo1.jpg" alt="Фото 1">
+                    <img class="slide" src="photo2.jpg" alt="Фото 2">
+                    <img class="slide" src="photo3.jpg" alt="Фото 3">
                 </div>
             </div>
-            <div class="media-block">
-                <video controls>
-                    <source src="video.mp4" type="video/mp4">
-                    Браузер не підтримує відео тег.
-                </video>
+            <div class="buttons">
+                <button onclick="prevSlide()">&#10094; Назад</button>
+                <button onclick="nextSlide()">Вперед &#10095;</button>
             </div>
+            <video controls>
+                <source src="video.mp4" type="video/mp4">
+                Ваш браузер не підтримує відео.
+            </video>
         </div>
     </div>
     <script>
         let slideIndex = 0;
         const slides = document.querySelector('.slides');
         const totalSlides = document.querySelectorAll('.slide').length;
-
         function showSlide(index) {
             if (index >= totalSlides) slideIndex = 0;
             if (index < 0) slideIndex = totalSlides - 1;
             slides.style.transform = `translateX(-${slideIndex * 100}%)`;
         }
-
-        function nextSlide() {
-            slideIndex++;
-            showSlide(slideIndex);
-        }
-
-        function prevSlide() {
-            slideIndex--;
-            showSlide(slideIndex);
-        }
-
-        function orderProduct() {
-            let message = encodeURIComponent("Хочу замовити апарат для промиву пічки автомобіля!");
-            let telegramURL = `https://t.me/gospodin88nikto?text=${message}`;
-            window.open(telegramURL, '_blank');
-        }
-
+        function nextSlide() { slideIndex++; showSlide(slideIndex); }
+        function prevSlide() { slideIndex--; showSlide(slideIndex); }
         setInterval(nextSlide, 5000);
+        function orderProduct() {
+            window.open("https://t.me/gospodin88nikto", '_blank');
+        }
     </script>
 </body>
 </html>
