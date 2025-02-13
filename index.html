@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Апарат промивання пічки авто</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Подключаем Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             box-sizing: border-box;
@@ -21,7 +21,7 @@
             height: 100vh;
             text-align: center;
             background: linear-gradient(to right, #323232, #b35e1a);
-            overflow-x: hidden; /* Отключаем горизонтальный скроллинг */
+            overflow-x: hidden;
         }
 
         .container {
@@ -131,9 +131,9 @@
             position: relative;
         }
 
-        .discount {
+        .price-reduced {
             position: absolute;
-            right: -50px;
+            right: -70px;
             top: 50%;
             transform: translateY(-50%);
             background-color: #ff5e00;
@@ -146,7 +146,7 @@
             transition: all 0.3s ease;
         }
 
-        .discount:hover {
+        .price-reduced:hover {
             background-color: #d75b00;
             transform: translateY(-50%) scale(1.1);
         }
@@ -271,9 +271,8 @@
             </div>
             <div style="position: relative; display: inline-flex; align-items: center;">
                 <button class="order-btn" onclick="orderProduct()">Замовити</button>
-                <div class="discount">-30%</div>
+                <div class="price-reduced">Цена снижена!</div>
             </div>
-            <!-- Блок звонка сразу после кнопки заказа -->
             <div class="phone-container">
                 <a class="phone">
                     <i class="fas fa-phone-alt icon"></i> Є питання телефонуй?: +380731826313
